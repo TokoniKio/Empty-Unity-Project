@@ -2,6 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+# Ignore these directories -- Unity will regenerate them.
 [Ll]ibrary/
 [Tt]emp/
 [Oo]bj/
@@ -9,6 +10,9 @@
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
+
+# But be sure to include these...
+!/docs/*
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
