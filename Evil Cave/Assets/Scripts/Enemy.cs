@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody enemyRb;
     private GameObject player;
     private PlayerController playerController;
-    public int health = 10;
+    public int health = 5;
 
     public Transform target;
     [SerializeField]
