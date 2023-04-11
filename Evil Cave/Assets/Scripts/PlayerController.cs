@@ -64,11 +64,6 @@ public class PlayerController : MonoBehaviour
         pickaxe.transform.Rotate(Vector3.forward, -50.0f);
         isCoolDown = false;
         }
-
-        if(isAttacking == false)
-        {
-        }
-
     }
 
     private void OnCollisionEnter(Collision collision)
