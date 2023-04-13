@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 
@@ -15,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed = 5;
     [SerializeField] private float _turnSpeed = 360;
     public Vector3 _input;
+
+    public TextMeshProUGUI livesText;
+
     
     // Start is called before the first frame update
 
@@ -93,6 +98,7 @@ public class PlayerController : MonoBehaviour
     public void UpdateLives(int livesToChange)
     {
         lives+= livesToChange;
+        livesText.text = "Health: " + lives;
         if (lives <= 0)
         {
             Debug.Log("Game Over!");
