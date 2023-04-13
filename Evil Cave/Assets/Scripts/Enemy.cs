@@ -6,10 +6,13 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public float enemyMoveSpeed = 5.0f;
-    private Rigidbody enemyRb;
     private GameObject player;
     private PlayerController playerController;
     public int health = 5;
+
+    [SerializeField] private Rigidbody _enemyRb;
+    [SerializeField] private float _enemySpeed = 5;
+    [SerializeField] private float _enemyTurnSpeed = 360;
 
     public Transform target;
     [SerializeField]
@@ -17,24 +20,46 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        Look();
+
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         
-        enemyRb.AddForce(lookDirection * enemyMoveSpeed);
+        _enemyRb.AddForce(lookDirection * _enemySpeed);
 
         Vector3 relativePos = target.position - transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos);
 
         Quaternion current = transform.localRotation;
 
-        transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * enemyMoveSpeed);
+        transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * _enemySpeed);
+    }
+
+    void FixedUpdate()
+    {
+        Move();
+    }
+
+    void Look()
+    {
+        if(playerController._input != Vector3.zero)
+        {
+            var relative = (transform.position + playerController._input) - transform.position;
+            var rot = Quaternion.LookRotation(relative,Vector3.up);
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation,rot,_enemyTurnSpeed * Time.deltaTime);
+        }
+    }
+
+    void Move()
+    {
+        _enemyRb.MovePosition(transform.position + (transform.forward * playerController._input.magnitude) * _enemySpeed * Time.deltaTime);
     }
 
     public void UpdateHealth(int healthToChange)

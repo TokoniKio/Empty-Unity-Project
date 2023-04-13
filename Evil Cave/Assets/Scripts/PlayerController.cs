@@ -5,28 +5,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 
 {
-    private Rigidbody playerRb;
-    public float playerMoveSpeed = 5.0f;
-    public float rotationSpeed;
-    public float horizontalInput;
-    public float verticalInput;
     public GameObject pickaxe;
     public bool isAttacking;
     public bool isCoolDown = false;
     public float coolDown = 1f;
     private Coroutine pickaxeDefaultCountdown;
-    public float strength = 15.0f;
     private int lives;
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _speed = 5;
     [SerializeField] private float _turnSpeed = 360;
-    private Vector3 _input;
+    public Vector3 _input;
     
     // Start is called before the first frame update
 
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
         UpdateLives(10);
     }
 
