@@ -40,21 +40,22 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             int enemyIndex = Random.Range(0, enemyPrefab.Length);
-            Instantiate(enemyPrefab[enemyIndex], GenerateSpawnPosition(), transform.rotation);
+            Instantiate(enemyPrefab[enemyIndex], GenerateSpawnPosition(false), transform.rotation);
         }
 
         if (waveNumber % 5 == 0)
         {
-            Instantiate(bossPrefab, GenerateSpawnPosition(), transform.rotation);
+            Instantiate(bossPrefab, GenerateSpawnPosition(true), transform.rotation);
         }
     }
 
-    private Vector3 GenerateSpawnPosition()
+    private Vector3 GenerateSpawnPosition(bool boss)
     {
         float spawnPosX = Random.Range(spawnRange, -spawnRange);
         float spawnPosZ = Random.Range(spawnRange, -spawnRange);
+        
 
-        if(CompareTag("Boss"))
+        if(boss)
         {
             Vector3 randomBossPos = new Vector3(spawnPosX, 1.57f, spawnPosZ);
             return randomBossPos;
@@ -76,6 +77,6 @@ public class SpawnManager : MonoBehaviour
         {
         }
 
-        var boss = Instantiate(bossPrefab, GenerateSpawnPosition(), bossPrefab.transform.rotation);
+        var boss = Instantiate(bossPrefab, GenerateSpawnPosition(true), bossPrefab.transform.rotation);
     }
 }
