@@ -4,11 +4,13 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefab;
     public GameObject bossPrefab;
+    public GameObject miniEnemyPrefab;
     public int bossRound;
 
     private readonly float spawnRange = 9f;
     public int enemyCount;
     public int waveNumber = 1;
+    public bool bossActive;
 
     // Start is called before the first frame update
     void Start()
@@ -40,22 +42,21 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             int enemyIndex = Random.Range(0, enemyPrefab.Length);
-            Instantiate(enemyPrefab[enemyIndex], GenerateSpawnPosition(false), transform.rotation);
+            Instantiate(enemyPrefab[enemyIndex], GenerateSpawnPosition(), transform.rotation);
         }
 
         if (waveNumber % 5 == 0)
         {
-            Instantiate(bossPrefab, GenerateSpawnPosition(true), transform.rotation);
+            Instantiate(bossPrefab, GenerateSpawnPosition(), transform.rotation);
         }
     }
 
-    private Vector3 GenerateSpawnPosition(bool boss)
+    private Vector3 GenerateSpawnPosition()
     {
         float spawnPosX = Random.Range(spawnRange, -spawnRange);
         float spawnPosZ = Random.Range(spawnRange, -spawnRange);
         
-
-        if(boss)
+        if(bossActive)
         {
             Vector3 randomBossPos = new Vector3(spawnPosX, 1.57f, spawnPosZ);
             return randomBossPos;
@@ -70,13 +71,27 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnBossWave(int currentRound)
     {
+        int miniEnemysToSpawn;
+
         if (bossRound != 0)
         {
+            bossActive = true;
+            miniEnemysToSpawn = currentRound / bossRound;
         }
         else
         {
+            miniEnemysToSpawn = 1;
         }
 
-        var boss = Instantiate(bossPrefab, GenerateSpawnPosition(true), bossPrefab.transform.rotation);
+        var boss = Instantiate(bossPrefab, GenerateSpawnPosition(), bossPrefab.transform.rotation);
+        boss.GetComponent<Enemy>().miniEnemySpawnCount = miniEnemysToSpawn;
+    }
+
+    public void SpawnMiniEnemy(int amount)
+    {
+        for(int i = 0; i < amount; i++)
+        {
+            Instantiate(miniEnemyPrefab, GenerateSpawnPosition(), miniEnemyPrefab.transform.rotation);
+        }
     }
 }
