@@ -24,7 +24,8 @@ public class Enemy : MonoBehaviour
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        UpdateHealth(5);
+        UpdateHealth(Random.Range(1,10));
+        target = player.transform;
     }
 
     // Update is called once per frame
