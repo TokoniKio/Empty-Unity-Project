@@ -215,7 +215,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.8, y: -19.04}
+  m_AnchoredPosition: {x: 5.03, y: -19.04}
   m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1781796383379278312
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 31.650707, y: 7.411685, z: 1.7167157, w: 27.141888}
+  m_margin: {x: 31.650707, y: 7.411685, z: 1.3567704, w: 27.141888}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -445,7 +445,6 @@ MonoBehaviour:
   enemyMoveSpeed: 1
   health: 0
   healthText: {fileID: 1781796383379278313}
-  isBoss: 0
-  spawnInterval: 0
+  isBoss: 1
+  spawnInterval: 5
   miniEnemySpawnCount: 0
-  target: {fileID: 0}

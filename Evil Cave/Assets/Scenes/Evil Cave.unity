@@ -240,7 +240,7 @@ MonoBehaviour:
   - {fileID: 8842825918576242644, guid: 4115d27261f15774d9b7752c8844cd38, type: 3}
   bossPrefab: {fileID: 1781796383658747792, guid: 329ed9a8e8f4885478bdee2b440a9586, type: 3}
   miniEnemyPrefab: {fileID: 861158850555117024, guid: c08ebf3b45f348d40bf647ee1e02aacd, type: 3}
-  bossRound: 5
+  bossRound: 10
   enemyCount: 0
   waveNumber: 0
   bossActive: 0

@@ -11,7 +11,6 @@ public class SpawnManager : MonoBehaviour
     public int enemyCount;
     public int waveNumber = 1;
     public bool bossActive;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +44,7 @@ public class SpawnManager : MonoBehaviour
             Instantiate(enemyPrefab[enemyIndex], GenerateSpawnPosition(), transform.rotation);
         }
 
-        if (waveNumber % 5 == 0)
+        if (waveNumber % 10 == 0)
         {
             Instantiate(bossPrefab, GenerateSpawnPosition(), transform.rotation);
         }
@@ -55,18 +54,16 @@ public class SpawnManager : MonoBehaviour
     {
         float spawnPosX = Random.Range(spawnRange, -spawnRange);
         float spawnPosZ = Random.Range(spawnRange, -spawnRange);
-        
-        if(bossActive)
+
+        Vector3 randomPos = new Vector3(spawnPosX, 0.77f, spawnPosZ);
+        return randomPos;
+
+        if(bossPrefab)
         {
             Vector3 randomBossPos = new Vector3(spawnPosX, 1.57f, spawnPosZ);
             return randomBossPos;
         }
         
-        else
-        {
-            Vector3 randomPos = new Vector3(spawnPosX, 0.77f, spawnPosZ);
-            return randomPos;
-        }
     }
 
     void SpawnBossWave(int currentRound)

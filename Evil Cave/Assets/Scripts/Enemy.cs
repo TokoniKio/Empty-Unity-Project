@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     public int miniEnemySpawnCount;
     private SpawnManager spawnManager;
 
-    public Transform target;
+    private Transform target;
     [SerializeField]
 
     // Start is called before the first frame update
@@ -31,7 +31,21 @@ public class Enemy : MonoBehaviour
         enemyRb = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        UpdateHealth(Random.Range(1,10));
+
+        if (CompareTag("Boss"))
+        {
+            UpdateHealth(Random.Range(50,100));
+        }
+        
+        if(CompareTag("Enemy"))
+        {
+            UpdateHealth(Random.Range(1,10));
+        }
+
+        if(CompareTag("Mini Enemy"))
+        {
+            UpdateHealth(Random.Range(1,5));
+        }
         target = player.transform;
 
         if (isBoss)
@@ -59,7 +73,7 @@ public class Enemy : MonoBehaviour
             if(Time.time > nextSpawn)
             {
                 nextSpawn = Time.time + spawnInterval;
-                spawnManager.SpawnMiniEnemy(6);
+                spawnManager.SpawnMiniEnemy(miniEnemySpawnCount);
             }
         }
     }

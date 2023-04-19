@@ -8,6 +8,7 @@ TagManager:
   - Pickaxe
   - Wall
   - Boss
+  - Mini Enemy
   layers:
   - Default
   - TransparentFX

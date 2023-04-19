@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5815341968642027772}
   m_Layer: 0
   m_Name: Diamond Mini Enemy
-  m_TagString: Enemy
+  m_TagString: Mini Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,6 @@ MonoBehaviour:
   isBoss: 0
   spawnInterval: 0
   miniEnemySpawnCount: 0
-  target: {fileID: 0}
 --- !u!1 &1721874235673608128
 GameObject:
   m_ObjectHideFlags: 0

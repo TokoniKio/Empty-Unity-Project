@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        UpdateLives(10);
+        UpdateLives(100);
     }
 
     // Update is called once per frame
@@ -87,11 +87,12 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy") && !isAttacking)
         {
-            //Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
-            //Vector3 awayFromPlayer = collision.gameObject.transform.position - playerRb.transform.position;
-
-            //enemyRb.AddForce(awayFromPlayer * strength, ForceMode.Impulse);
             UpdateLives(-1);
+        }
+
+        if (collision.gameObject.CompareTag("Boss") && !isAttacking)
+        {
+            UpdateLives(-2);
         }
     }
 
