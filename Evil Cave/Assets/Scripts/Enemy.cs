@@ -57,16 +57,16 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        //Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         
-        enemyRb.AddForce(lookDirection * enemyMoveSpeed);
+        //enemyRb.AddForce(lookDirection * enemyMoveSpeed);
 
-        Vector3 relativePos = target.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
+        //Vector3 relativePos = target.position - transform.position;
+        //Quaternion rotation = Quaternion.LookRotation(relativePos);
 
-        Quaternion current = transform.localRotation;
+        //Quaternion current = transform.localRotation;
 
-        transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * enemyMoveSpeed);
+        //transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * enemyMoveSpeed);
 
         if(isBoss)
         {

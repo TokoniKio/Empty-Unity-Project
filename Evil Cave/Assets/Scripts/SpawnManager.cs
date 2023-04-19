@@ -6,7 +6,6 @@ public class SpawnManager : MonoBehaviour
     public GameObject bossPrefab;
     public GameObject miniEnemyPrefab;
     public int bossRound;
-
     private readonly float spawnRange = 9f;
     public int enemyCount;
     public int waveNumber = 1;
@@ -55,15 +54,22 @@ public class SpawnManager : MonoBehaviour
         float spawnPosX = Random.Range(spawnRange, -spawnRange);
         float spawnPosZ = Random.Range(spawnRange, -spawnRange);
 
-        Vector3 randomPos = new Vector3(spawnPosX, 0.77f, spawnPosZ);
-        return randomPos;
-
         if(bossPrefab)
         {
             Vector3 randomBossPos = new Vector3(spawnPosX, 1.57f, spawnPosZ);
             return randomBossPos;
         }
-        
+
+        if(miniEnemyPrefab)
+        {
+            Vector3 randomMiniPos = new Vector3(spawnPosX, 0.162f, spawnPosZ);
+            return randomMiniPos;
+        }
+        else
+        {
+            Vector3 randomBossPos = new Vector3(spawnPosX, 0.77f, spawnPosZ);
+            return randomBossPos;
+        }
     }
 
     void SpawnBossWave(int currentRound)

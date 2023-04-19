@@ -347,7 +347,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &9098569891628732488
 MonoBehaviour:
@@ -364,7 +364,9 @@ MonoBehaviour:
   enemyMoveSpeed: 2
   health: 0
   healthText: {fileID: 9098569891255110780}
-  target: {fileID: 0}
+  isBoss: 0
+  spawnInterval: 0
+  miniEnemySpawnCount: 0
 --- !u!1 &9098569892074644895
 GameObject:
   m_ObjectHideFlags: 0
