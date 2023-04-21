@@ -15,9 +15,10 @@ public class PlayerController : MonoBehaviour
     private int lives;
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _speed = 5;
+    [SerializeField] private float _powerUpSpeed = 10;
     [SerializeField] private float _turnSpeed = 360;
     public Vector3 _input;
-    public GameObject healthPrefab;
+    public bool speedPowerup = false;
 
     public TextMeshProUGUI livesText;
 
@@ -37,8 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         GatherInput();
         Look();
-
-
+        
         if(Input.GetMouseButtonDown(0))
         {
                 if(isCoolDown == false)
@@ -49,12 +49,18 @@ public class PlayerController : MonoBehaviour
                     pickaxeDefaultCountdown = StartCoroutine(PickaxeCountdown());
             }
         }
+
+        if (currentPowerUp == PowerUpType.Speed)
+        {
+            speedPowerup = true;
+        }
     }
 
     IEnumerator PowerupCountdownRoutine()
     {
         yield return new WaitForSeconds(7);
         hasPowerup = false;
+        speedPowerup = false;
         currentPowerUp = PowerUpType.None;
     }
 
@@ -77,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.name[0] == 'H' && other.gameObject.name[7] == 'P')
         {
-            UpdateLives(10);
+            UpdateLives(5);
         }
     }
 
@@ -113,7 +119,14 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        _rb.MovePosition(transform.position + (transform.forward * _input.magnitude) * _speed * Time.deltaTime);
+        if(!speedPowerup)
+        {
+            _rb.MovePosition(transform.position + (transform.forward * _input.magnitude) * _speed * Time.deltaTime);
+        }
+        else
+        {
+        _rb.MovePosition(transform.position + (transform.forward * _input.magnitude) * _powerUpSpeed * Time.deltaTime);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -5,7 +5,8 @@ public enum PowerUpType
 {
     None, 
     Health, 
-    Strength
+    Strength,
+    Speed
 }
 
 public class PowerUp : MonoBehaviour
