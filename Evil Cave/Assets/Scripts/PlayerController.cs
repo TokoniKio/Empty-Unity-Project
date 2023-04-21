@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed = 5;
     [SerializeField] private float _turnSpeed = 360;
     public Vector3 _input;
+    public GameObject healthPrefab;
 
     public TextMeshProUGUI livesText;
 
@@ -59,6 +60,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Player collided with: " + other.gameObject.name);
+
         if (other.CompareTag("Powerup"))
         {
             hasPowerup = true;
@@ -70,6 +73,11 @@ public class PlayerController : MonoBehaviour
                 StopCoroutine(powerupCountdown);
             }
             powerupCountdown = StartCoroutine(PowerupCountdownRoutine());
+        }
+
+        if (other.gameObject.name[0] == 'H' && other.gameObject.name[7] == 'P')
+        {
+            UpdateLives(10);
         }
     }
 

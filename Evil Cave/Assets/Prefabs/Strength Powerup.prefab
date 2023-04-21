@@ -4818,7 +4818,7 @@ GameObject:
   - component: {fileID: 4302391954044652409}
   - component: {fileID: 4302391954044652405}
   m_Layer: 0
-  m_Name: StrengthPowerup
+  m_Name: Strength Powerup
   m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
