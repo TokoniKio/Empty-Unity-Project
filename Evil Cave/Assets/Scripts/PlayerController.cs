@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _turnSpeed = 360;
     public Vector3 _input;
     public bool speedPowerup = false;
+    public bool gameOver = true;
 
     public TextMeshProUGUI livesText;
 
