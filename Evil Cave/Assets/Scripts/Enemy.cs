@@ -110,5 +110,10 @@ public class Enemy : MonoBehaviour
         {
             UpdateHealth(-1);
         }
+
+        if(playerController.isAttacking && playerController.currentPowerUp == PowerUpType.Strength)
+        {
+            UpdateHealth(-5);
+        }
     }
 }

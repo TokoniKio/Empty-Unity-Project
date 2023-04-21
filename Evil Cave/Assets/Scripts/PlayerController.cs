@@ -20,7 +20,10 @@ public class PlayerController : MonoBehaviour
 
     public TextMeshProUGUI livesText;
 
-    
+    public bool hasPowerup = false; 
+    public PowerUpType currentPowerUp = PowerUpType.None;
+    private Coroutine powerupCountdown;
+
     // Start is called before the first frame update
 
     void Start()
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
         GatherInput();
         Look();
 
+
         if(Input.GetMouseButtonDown(0))
         {
                 if(isCoolDown == false)
@@ -43,6 +47,29 @@ public class PlayerController : MonoBehaviour
                     pickaxe.transform.Rotate(Vector3.forward, 50.0f);
                     pickaxeDefaultCountdown = StartCoroutine(PickaxeCountdown());
             }
+        }
+    }
+
+    IEnumerator PowerupCountdownRoutine()
+    {
+        yield return new WaitForSeconds(7);
+        hasPowerup = false;
+        currentPowerUp = PowerUpType.None;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Powerup"))
+        {
+            hasPowerup = true;
+            currentPowerUp = other.gameObject.GetComponent<PowerUp>().powerUpType;
+            Destroy(other.gameObject);
+
+            if(powerupCountdown != null)
+            {
+                StopCoroutine(powerupCountdown);
+            }
+            powerupCountdown = StartCoroutine(PowerupCountdownRoutine());
         }
     }
 
