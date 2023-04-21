@@ -134,7 +134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.3, y: -19.04}
+  m_AnchoredPosition: {x: 2.5, y: -19.2}
   m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9098569891255110783
@@ -167,8 +167,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Health:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c769a57c63db76d45894c5f55a9b0bd9, type: 2}
+  m_sharedMaterial: {fileID: -826361007027789913, guid: c769a57c63db76d45894c5f55a9b0bd9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -192,8 +192,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.4
-  m_fontSizeBase: 0.4
+  m_fontSize: 0.3
+  m_fontSizeBase: 0.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 31.650707, y: 7.411685, z: 1.7167157, w: 27.141888}
+  m_margin: {x: 31.650707, y: 7.411685, z: 1.0087489, w: 27.107332}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -364,6 +364,7 @@ MonoBehaviour:
   enemyMoveSpeed: 2
   health: 0
   healthText: {fileID: 9098569891255110780}
+  Player: {fileID: 0}
   isBoss: 0
   spawnInterval: 0
   miniEnemySpawnCount: 0
