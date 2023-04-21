@@ -446,5 +446,5 @@ MonoBehaviour:
   health: 0
   healthText: {fileID: 1781796383379278313}
   isBoss: 1
-  spawnInterval: 10
+  spawnInterval: 5
   miniEnemySpawnCount: 0

@@ -8,6 +8,7 @@ using TMPro;
 
 public class Enemy : MonoBehaviour
 {
+
     public float enemyMoveSpeed = 5.0f;
     private Rigidbody enemyRb;
     private GameObject player;
@@ -15,6 +16,11 @@ public class Enemy : MonoBehaviour
     public int health;
     public TextMeshProUGUI healthText;
 
+
+    public Transform Player;
+    int MoveSpeed = 4;
+    int MaxDist = 10;
+    float MinDist = 1.2f;
 
     public bool isBoss = false;
     public float spawnInterval;
@@ -67,6 +73,16 @@ public class Enemy : MonoBehaviour
         //Quaternion current = transform.localRotation;
 
         //transform.localRotation = Quaternion.Slerp(current, rotation, Time.deltaTime * enemyMoveSpeed);
+
+        transform.LookAt(target);
+        if (Vector3.Distance(transform.position, target.position) >= MinDist)
+        {
+            transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+            if (Vector3.Distance(transform.position, target.position) <= MaxDist)
+            {
+                //Here Call any function U want Like Shoot at here or something
+            }
+        }
 
         if(isBoss)
         {
