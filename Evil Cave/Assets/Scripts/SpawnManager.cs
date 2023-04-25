@@ -10,11 +10,13 @@ public class SpawnManager : MonoBehaviour
     public int enemyCount;
     public int waveNumber = 1;
     public GameObject[] powerupPrefabs;
-
+    private PlayerController playerController;
+    public bool bossDefeated = false;
     public bool bossActive;
     // Start is called before the first frame update
     void Start()
     {
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
     }
 
@@ -23,19 +25,22 @@ public class SpawnManager : MonoBehaviour
     {
         enemyCount = FindObjectsOfType<Enemy>().Length;
 
-        if(enemyCount == 0)
+        if(!playerController.gameOver && !bossDefeated)
         {
-            waveNumber++;
-            if (waveNumber % bossRound == 0)
+            if(enemyCount == 0)
             {
-                SpawnBossWave(waveNumber);
+                waveNumber++;
+                if (waveNumber % bossRound == 0)
+                {
+                    SpawnBossWave(waveNumber);
+                }
+                else
+                {
+                    SpawnEnemyWave(waveNumber);
+                }
+                int randomPowerup = Random.Range(0, powerupPrefabs.Length);
+                Instantiate(powerupPrefabs[randomPowerup], GenerateSpawnPosition(), powerupPrefabs[randomPowerup].transform.rotation);
             }
-            else
-            {
-                SpawnEnemyWave(waveNumber);
-            }
-            int randomPowerup = Random.Range(0, powerupPrefabs.Length);
-            Instantiate(powerupPrefabs[randomPowerup], GenerateSpawnPosition(), powerupPrefabs[randomPowerup].transform.rotation);
         }
     }
 

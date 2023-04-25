@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 using UnityEngine.UI;
 using TMPro;
 
@@ -20,12 +22,12 @@ public class PlayerController : MonoBehaviour
     public Vector3 _input;
     public bool speedPowerup = false;
     public bool gameOver = true;
-
     public TextMeshProUGUI livesText;
 
     public bool hasPowerup = false; 
     public PowerUpType currentPowerUp = PowerUpType.None;
     private Coroutine powerupCountdown;
+    public bool alive = false;
 
     // Start is called before the first frame update
 
@@ -37,9 +39,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GatherInput();
-        Look();
-        
+        if(!gameOver)
+        {
+            GatherInput();
+            Look();        
         if(Input.GetMouseButtonDown(0))
         {
                 if(isCoolDown == false)
@@ -50,6 +53,8 @@ public class PlayerController : MonoBehaviour
                     pickaxeDefaultCountdown = StartCoroutine(PickaxeCountdown());
             }
         }
+        }
+
 
         if (currentPowerUp == PowerUpType.Speed)
         {
@@ -147,11 +152,20 @@ public class PlayerController : MonoBehaviour
 
     public void UpdateLives(int livesToChange)
     {
-        lives+= livesToChange;
-        livesText.text = "Health: " + lives;
-        if (lives <= 0)
         {
-            Debug.Log("Game Over!");
+            lives+= livesToChange;
+            livesText.text = "Health: " + lives;
+            if (lives <= 0)
+            {
+                Debug.Log("Game Over!");
+                GameOver();
+            }
         }
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameOver = true;
     }
 }

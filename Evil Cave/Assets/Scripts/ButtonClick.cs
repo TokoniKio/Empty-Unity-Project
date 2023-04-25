@@ -11,6 +11,7 @@ public class ButtonClick : MonoBehaviour
     private PlayerController playerController;
     public Button playButton;
     public TextMeshProUGUI textTitle;
+    public TextMeshProUGUI healthText;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class ButtonClick : MonoBehaviour
         {
             playButton.gameObject.SetActive(false);
             textTitle.gameObject.SetActive(false);
-
+            healthText.gameObject.SetActive(true);
         }
     }
 
