@@ -22,12 +22,18 @@ public class PlayerController : MonoBehaviour
     public Vector3 _input;
     public bool speedPowerup = false;
     public bool gameOver = true;
+
     public TextMeshProUGUI livesText;
+    public TextMeshProUGUI strengthText;
+    public TextMeshProUGUI speedText;
 
     public bool hasPowerup = false; 
     public PowerUpType currentPowerUp = PowerUpType.None;
     private Coroutine powerupCountdown;
     public bool alive = false;
+    public bool timing;
+    private int secondsToEnd;
+
 
     // Start is called before the first frame update
 
@@ -54,11 +60,17 @@ public class PlayerController : MonoBehaviour
             }
         }
         }
-
-
         if (currentPowerUp == PowerUpType.Speed)
         {
             speedPowerup = true;
+            speedText.gameObject.SetActive(true);
+            strengthText.gameObject.SetActive(false);
+        }
+
+        if (currentPowerUp == PowerUpType.Strength)
+        {
+            strengthText.gameObject.SetActive(true);
+            speedText.gameObject.SetActive(false);
         }
     }
 
@@ -68,6 +80,8 @@ public class PlayerController : MonoBehaviour
         hasPowerup = false;
         speedPowerup = false;
         currentPowerUp = PowerUpType.None;
+        speedText.gameObject.SetActive(false);
+        strengthText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)

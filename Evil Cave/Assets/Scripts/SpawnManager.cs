@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class SpawnManager : MonoBehaviour
     private PlayerController playerController;
     public bool bossDefeated = false;
     public bool bossActive;
+    public TextMeshProUGUI wavesText;
+    public TextMeshProUGUI bossWaveText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +55,9 @@ public class SpawnManager : MonoBehaviour
         {
             int enemyIndex = Random.Range(0, enemyPrefab.Length);
             Instantiate(enemyPrefab[enemyIndex], GenerateSpawnPosition(), transform.rotation);
+            wavesText.gameObject.SetActive(true);
+            bossWaveText.gameObject.SetActive(false);
+            wavesText.text = "Wave: " + waveNumber;
         }
 
         if (waveNumber % 10 == 0)
@@ -71,6 +79,9 @@ public class SpawnManager : MonoBehaviour
     void SpawnBossWave(int currentRound)
     {
         int miniEnemysToSpawn;
+        wavesText.gameObject.SetActive(false);
+        bossWaveText.gameObject.SetActive(true);
+
 
         if (bossRound != 0)
         {
